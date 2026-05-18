@@ -27,7 +27,7 @@ public class PaymentRecord {
     @Column(name = "status_code", nullable = false)
     private int statusCode;
     @Column(name = "is_processing", nullable = false)
-    private boolean Processing = false;
+    private boolean isProcessing = false;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
