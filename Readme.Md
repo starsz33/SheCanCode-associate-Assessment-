@@ -25,10 +25,10 @@ POST /api/process-payment
 
 ### Required Headers
 
-| Key | Value |
-|---|---|
-| `Idempotency-Key` | A unique string per transaction (e.g. UUID) |
-| `Content-Type` | `application/json` |
+| Key                 |Value |
+
+| `Idempotency-Key`   | A unique string per transaction (e.g. UUID) |
+| `Content-Type`      | `application/json` |
 
 ### Request Body
 
@@ -51,13 +51,12 @@ POST /api/process-payment
 
 ### All Possible Responses
 
-| Scenario | Status Code | Status Field | Message |
-|---|---|---|---|
-| First payment processed | `201 Created` | `SUCCESS` | `Charged 100 GHS` |
-| Duplicate same key + same body | `201 Created` | `ALREADY_PROCESSED` | `Charged 100 GHS` |
-| Same key different body | `409 Conflict` | `CONFLICT` | `Idempotency key already used for a different request body.` |
-| Key expired after 24hrs | `410 Gone` | `EXPIRED` | `Idempotency key has expired. Please use a new key.` |
-| Payment still processing | `202 Accepted` | `PROCESSING` | `Payment is still processing. Please try again shortly.` |
+| Scenario                       |Status Code       | Status Field        | Message |
+| First payment processed        | `201 Created`    | `SUCCESS`           | `Charged 100 GHS` 
+| Duplicate same key + same body | `201 Created`    | `ALREADY_PROCESSED` | `Charged 100 GHS` 
+| Same key different body        | `409 Conflict`   | `CONFLICT`          | `Idempotency key already used for a different request body.` 
+| Key expired after 24hrs        | `410 Gone`       | `EXPIRED`           | `Idempotency key has expired. Please use a new key.` 
+| Payment still processing       | `202 Accepted`   | `PROCESSING`        | `Payment is still processing. Please try again shortly.` 
 
 ### Special Response Header (Duplicate Requests)
 
@@ -116,7 +115,7 @@ By adding this feature the system behaves like a production-grade
 payment processor and protects both the business and the customer.
 
 ## Author
-**Uwingeneye Esther**
+**UWINGENEYE Esther**
 Computer and Software Engineering final year Student
 University of Rwanda
 GitHub: [starsz33](https://github.com/starsz33)
