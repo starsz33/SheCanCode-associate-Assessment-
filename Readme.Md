@@ -51,13 +51,38 @@ POST /api/process-payment
 
 ### All Possible Responses
 
-| Scenario                       |Status Code       | Status Field        | Message |
-| First payment processed        | `201 Created`    | `SUCCESS`           | `Charged 100 GHS` 
-| Duplicate same key + same body | `201 Created`    | `ALREADY_PROCESSED` | `Charged 100 GHS` 
-| Same key different body        | `409 Conflict`   | `CONFLICT`          | `Idempotency key already used for a different request body.` 
-| Key expired after 24hrs        | `410 Gone`       | `EXPIRED`           | `Idempotency key has expired. Please use a new key.` 
-| Payment still processing       | `202 Accepted`   | `PROCESSING`        | `Payment is still processing. Please try again shortly.` 
+### 1. First payment processed
+- Status Code: `201 Created`
+- Status: `SUCCESS`
+- Message: `Charged 100 GHS`
 
+---
+
+### 2. Duplicate request with same key and same body
+- Status Code: `201 Created`
+- Status: `ALREADY_PROCESSED`
+- Message: `Charged 100 GHS`
+
+---
+
+### 3. Same key used with different request body
+- Status Code: `409 Conflict`
+- Status: `CONFLICT`
+- Message: `Idempotency key already used for a different request body.`
+
+---
+
+### 4. Idempotency key expired after 24 hours
+- Status Code: `410 Gone`
+- Status: `EXPIRED`
+- Message: `Idempotency key has expired. Please use a new key.`
+
+---
+
+### 5. Payment still processing
+- Status Code: `202 Accepted`
+- Status: `PROCESSING`
+- Message: `Payment is still processing. Please try again shortly.`
 ### Special Response Header (Duplicate Requests)
 
 When a duplicate request is detected the response includes:
